@@ -11,16 +11,18 @@ public class UsersManager {
     public List<User> getUsers() {
         return users;
     }
-    public void addUser(User user) {
-        users.add(user);
+    public void addUser(String login, String password) throws InvalidLoginException, InvalidPasswordException {
+        ValidateUserDetails.validate(login, password);
+        users.add(new User(login, password));
     }
 
     public void deleteUser(String login) {
         users.removeIf(user -> user.getLogin().equals(login));
     }
 
-    public void updateUser(User user) {
-        deleteUser(user.getLogin());
-        users.add(user);
+    public void updateUser(String oldLogin, String newLogin, String newPassword) throws InvalidLoginException, InvalidPasswordException {
+        deleteUser(oldLogin);
+        ValidateUserDetails.validate(newLogin, newPassword);
+        addUser(newLogin, newPassword);
     }
 }

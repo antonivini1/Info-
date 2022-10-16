@@ -1,5 +1,7 @@
 package boundary;
 
+import Control.InvalidLoginException;
+import Control.InvalidPasswordException;
 import Control.UsersManager;
 import entity.User;
 
@@ -50,7 +52,11 @@ public class ManageUsersUi {
         System.out.print("Senha: ");
         String password = scanner.nextLine();
 
-        usersManager.addUser(new User(login, password));
+        try {
+            usersManager.addUser(login, password);
+        } catch (InvalidLoginException | InvalidPasswordException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
     }
 
     private static void showUsers(UsersManager usersManager) {
@@ -64,15 +70,18 @@ public class ManageUsersUi {
 
     private static void updateUser(Scanner scanner, UsersManager usersManager) {
         System.out.print("Login: ");
-        String login = scanner.nextLine();
-        usersManager.deleteUser(login);
+        String oldLogin = scanner.nextLine();
 
         System.out.print("Novo Login: ");
-        login = scanner.nextLine();
+        String newLogin = scanner.nextLine();
         System.out.print("Nova Senha: ");
-        String password = scanner.nextLine();
+        String newPassword = scanner.nextLine();
 
-        usersManager.updateUser(new User(login, password));
+        try {
+            usersManager.updateUser(oldLogin, newLogin, newPassword);
+        } catch (InvalidLoginException | InvalidPasswordException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
     }
 
     private static void deleteUser(Scanner scanner, UsersManager usersManager) {
