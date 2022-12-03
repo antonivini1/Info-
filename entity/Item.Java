@@ -1,20 +1,25 @@
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Item{
     private String title;
     private String description;
     private String status;
     private String author;
     private String location;
-    private List comentaries;
 
-    public Item(String author){
+    private List<String> commentaries;
+
+    public Item(String title, String author){
+        this.title = title;
         this.author = author;
         this.title = null;
-        this.desciption = null;
+        this.description = null;
         this.status = null;
         this.location = null;
-        this.comentaries = new ArrayList<String>();
+        this.commentaries = new ArrayList<String>();
     }
 
     public void setTitle(String title){
@@ -33,8 +38,8 @@ public class Item{
         this.location = location;
     }
 
-    public void addComentary(String comentary){
-        this.comentaries.add(comentary);
+    public void addCommentary(String commentary){
+        this.commentaries.add(commentary);
     }
 
     public String getTitle(){
@@ -49,7 +54,7 @@ public class Item{
         return this.status;
     }
 
-    public void getLocation(String location){
+    public String getLocation(String location){
         return this.location;
     }
 }

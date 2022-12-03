@@ -1,25 +1,24 @@
 package entity;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chamado {
+public class Item{
     private String title;
-
-    private String author;
     private String description;
     private String status;
-    private List<String> commentaries;
-    private List<File> attach;
+    private String author;
+    private String location;
 
-    public Chamado(String title, String author){
-        this.title = title;
+    private List<String> commentaries;
+
+    public Item(String author){
         this.author = author;
+        this.title = null;
         this.description = null;
         this.status = null;
-        this.commentaries = new ArrayList<>();
-        this.attach = new ArrayList<>();
+        this.location = null;
+        this.commentaries = new ArrayList<String>();
     }
 
     public void setTitle(String title){
@@ -34,12 +33,12 @@ public class Chamado {
         this.status = status;
     }
 
-    public void addComentary(String comentary){
-        this.commentaries.add(comentary);
+    public void setLocation(String location){
+        this.location = location;
     }
 
-    public void addFile(File file){
-        this.attach.add(file);
+    public void addCommentary(String commentary){
+        this.commentaries.add(commentary);
     }
 
     public String getTitle(){
@@ -52,5 +51,9 @@ public class Chamado {
 
     public String getStatus(){
         return this.status;
+    }
+
+    public String getLocation(String location){
+        return this.location;
     }
 }
