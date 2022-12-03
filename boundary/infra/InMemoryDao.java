@@ -1,6 +1,6 @@
 package boundary.infra;
 
-import Control.Dao;
+import control.Dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;

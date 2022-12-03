@@ -3,7 +3,7 @@ package entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Item{
+public class Item {
     private String title;
     private String description;
     private String status;

@@ -1,12 +1,15 @@
-package Control;
+package control;
 
-import boundary.infra.InMemoryDao;
 import entity.User;
 
 import java.util.List;
 
 public class UsersManager {
-    private InMemoryDao<String, User> users = new InMemoryDao<>();
+    private Dao<String, User> users;
+
+    public UsersManager(DaoFactory<String, User> factory) {
+        users = factory.createDao();
+    }
 
     public List<User> getUsers() {
         return users.getAll();

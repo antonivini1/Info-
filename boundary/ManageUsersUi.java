@@ -1,8 +1,8 @@
 package boundary;
 
-import Control.InvalidLoginException;
-import Control.InvalidPasswordException;
-import Control.UsersManager;
+import control.InvalidLoginException;
+import control.InvalidPasswordException;
+import control.UsersManager;
 import entity.User;
 
 import java.util.ArrayList;
