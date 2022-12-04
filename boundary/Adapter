@@ -1,0 +1,31 @@
+public class OpenGLImage {
+ 
+    public void glCarregarImagem(String arquivo) {
+        System.out.println("Imagem " + arquivo + " carregada.");
+    }
+    
+public class OpenGLVideo {
+ 
+    public void glCarregarVideo(String arquivo) {
+        System.out.println("Video " + arquivo + " carregada.");
+    }
+    
+    public class Solicitacao {
+ 
+    public void Solicitacao (String arquivo) {
+        System.out.println("Solicitacao  " + arquivo + " carregada.");
+    }
+ 
+ 
+    public void glMMostrarImagem(int posicaoX, int posicaoY) {
+        System.out.println("OpenGL Mostrar Imagem");
+    }
+    
+      public void glMMostrarVideo(int posicaoX, int posicaoY) {
+        System.out.println("OpenGL Mostrar Video");
+    }
+    
+      public void glMMostrarSolicitacao(int posicaoX, int posicaoY) {
+        System.out.println("OpenGL Mostrar Solicitacao");
+    }
+}
