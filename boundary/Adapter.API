@@ -1,0 +1,40 @@
+
+public static void main(String[] args) {
+    SolicitacaoTarget Solicitacao = new SDLSolicitacaoAdapter();
+    Solicitacao.fazerSolicitacao("teste.png");
+    Solicitacao.mostrarSolicitacao(0, 0, 10, 10);
+ 
+    Solicitacao = new OpenGLSolicitacaoAdapter();
+    Solicitacao.fazerSolicitacao("teste.png");
+    Solicitacao.mostrarSolicitacao(0, 0, 10, 10);
+
+public static void main(String[] args) {
+    ImagemTarget imagem = new SDLImagemAdapter();
+    imagem.carregarImagem("teste.png");
+    imagem.desenharImagem(0, 0, 10, 10);
+ 
+    imagem = new OpenGLImageAdapter();
+    imagem.carregarImagem("teste.png");
+    imagem.desenharImagem(0, 0, 10, 10);
+}
+
+public static void main(String[] args) {
+    VideoTarget Video = new SDLVideoAdapter();
+    Video.carregarVideo("teste.png");
+    Video.mostrarVideo(0, 0, 10, 10);
+ 
+    Video = new OpenGLVideoAdapter();
+    Video.carregarVideo("teste.png");
+    Video.mostrarVideo(0, 0, 10, 10);
+}
+}
+
+public static void main(String[] args) {
+    AchadosEPerdidosTarget Video = new SDLAchadosEPerdidosAdapter();
+    AchadosEPerdidos.usarAchadosEPerdidos("teste.png");
+    AchadosEPerdidos.mostrarAchadosEPerdidos(0, 0, 10, 10);
+ 
+    AchadosEPerdidos = new OpenGLAchadosEPerdidosAdapter();
+    AchadosEPerdidos.usarAchadosEPerdidos("teste.png");
+    AchadosEPerdidos.mostrarAchadosEPerdidos(0, 0, 10, 10);
+}
