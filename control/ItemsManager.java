@@ -18,8 +18,8 @@ public class ItemsManager {
         return items.getAll();
     }
 
-    public void addItem(String title, String author) {
-        items.add(title, new Item(title, author));
+    public void addItem(String title, String author, String description, String status, String location) {
+        items.add(title, new Item(title, author, description, status, location));
     }
 
     public void deleteItem(String title) {

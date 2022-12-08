@@ -17,8 +17,8 @@ public class TicketsManager {
         return tickets.getAll();
     }
 
-    public void addTicket(String title, String author) {
-        tickets.add(title, new Ticket(title, author));
+    public void addTicket(String title, String author, String description) {
+        tickets.add(title, new Ticket(title, author, description));
     }
 
     public void deleteTicket(String title) {
