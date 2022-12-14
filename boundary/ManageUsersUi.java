@@ -1,17 +1,29 @@
 package boundary;
 
 import boundary.infra.dao.InMemoryDaoFactory;
+import control.UserRegistrationObserver;
 import control.command.*;
 import control.validation.InvalidCredentialsException;
 import control.validation.InvalidLoginException;
 import control.validation.InvalidPasswordException;
 import control.UsersManager;
+import entity.User;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class ManageUsersUi {
-    private UsersManager usersManager = new UsersManager(new InMemoryDaoFactory<>());;
+    private UsersManager usersManager;
+    public ManageUsersUi() {
+        usersManager = new UsersManager(new InMemoryDaoFactory<>());
+        usersManager.addObserver(new UserRegistrationObserver() {
+            @Override
+            public void onUserRegistered(User user) {
+                System.out.println("Bem-vindo " + user.getLogin());
+                System.out.println("Confira essas recomendações");
+            }
+        });
+    }
 
     public void run() {
         System.out.println("Bem-vindo ao info+");

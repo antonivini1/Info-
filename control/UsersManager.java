@@ -12,13 +12,19 @@ import control.validation.ValidateUserDetails;
 import control.visitor.EntityViewer;
 import entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsersManager implements Service {
     private Dao<String, User> users;
+    private ArrayList<UserRegistrationObserver> observers;
 
     public UsersManager(DaoFactory<String, User> factory) {
         users = factory.createDao();
+    }
+
+    public void addObserver(UserRegistrationObserver observer) {
+        observers.add(observer);
     }
 
     public List<User> getUsers() {
@@ -26,7 +32,11 @@ public class UsersManager implements Service {
     }
     public void addUser(String login, String password) throws InvalidLoginException, InvalidPasswordException {
         ValidateUserDetails.validate(login, password);
-        users.add(login, new User(login, password));
+        User newUser = new User(login, password);
+        users.add(login, newUser);
+        for (UserRegistrationObserver observer : observers) {
+            observer.onUserRegistered(newUser);
+        }
     }
 
     public void deleteUser(String login) {
