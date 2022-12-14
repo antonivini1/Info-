@@ -1,6 +1,6 @@
 package control.command;
 
-import control.InvalidCredentialsException;
+import control.validation.InvalidCredentialsException;
 import control.Service;
 
 public class UpdateCommand implements Command {

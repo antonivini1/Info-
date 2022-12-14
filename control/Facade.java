@@ -1,6 +1,6 @@
-package boundary;
+package control;
 
-import control.InvalidCredentialsException;
+import control.validation.InvalidCredentialsException;
 import control.command.Command;
 import control.command.CommandData;
 

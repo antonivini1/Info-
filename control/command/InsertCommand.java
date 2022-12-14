@@ -1,8 +1,6 @@
 package control.command;
 
-import control.InvalidCredentialsException;
-import control.InvalidLoginException;
-import control.InvalidPasswordException;
+import control.validation.InvalidCredentialsException;
 import control.Service;
 
 public class InsertCommand implements Command {

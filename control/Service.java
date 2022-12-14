@@ -1,7 +1,10 @@
 package control;
 
-import control.command.Command;
 import control.command.CommandData;
+import control.memento.Restorable;
+import control.validation.InvalidCredentialsException;
+import control.validation.InvalidLoginException;
+import control.validation.InvalidPasswordException;
 import control.visitor.EntityViewer;
 
 public interface Service extends Restorable {

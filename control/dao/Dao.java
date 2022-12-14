@@ -1,4 +1,6 @@
-package control;
+package control.dao;
+
+import control.memento.Restorable;
 
 import java.util.List;
 

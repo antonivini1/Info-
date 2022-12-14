@@ -1,4 +1,4 @@
-package control;
+package control.validation;
 
 public class ValidateUserDetails {
     public static void validate(String login, String password) throws InvalidLoginException, InvalidPasswordException {

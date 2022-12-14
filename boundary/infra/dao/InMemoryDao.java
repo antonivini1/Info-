@@ -1,7 +1,7 @@
 package boundary.infra.dao;
 
-import control.Dao;
-import control.Memento;
+import control.dao.Dao;
+import control.memento.Memento;
 
 import java.util.ArrayList;
 import java.util.HashMap;

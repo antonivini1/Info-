@@ -1,6 +1,6 @@
 package boundary.infra.dao;
 
-import control.Memento;
+import control.memento.Memento;
 
 import java.util.HashMap;
 
