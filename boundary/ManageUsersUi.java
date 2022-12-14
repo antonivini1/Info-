@@ -1,16 +1,19 @@
 package boundary;
 
-import control.InvalidLoginException;
-import control.InvalidPasswordException;
-import control.UsersManager;
+import boundary.infra.dao.InMemoryDaoFactory;
+import control.*;
+import control.command.*;
 import entity.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class ManageUsersUi {
-    public static void run(UsersManager usersManager) {
+    private UsersManager usersManager = new UsersManager(new InMemoryDaoFactory<>());;
+
+    public void run() {
         System.out.println("Bem-vindo ao info+");
         Scanner scanner = new Scanner(System.in);
 
@@ -21,16 +24,16 @@ public class ManageUsersUi {
 
             switch (option) {
                 case 1:
-                    addUser(scanner, usersManager);
+                    addUser(scanner);
                     break;
                 case 2:
-                    showUsers(usersManager);
+                    showUsers();
                     break;
                 case 3:
-                    updateUser(scanner, usersManager);
+                    updateUser(scanner);
                     break;
                 case 4:
-                    deleteUser(scanner, usersManager);
+                    deleteUser(scanner);
                     break;
                 default:
                     System.out.println("Opção inválida!");
@@ -46,29 +49,29 @@ public class ManageUsersUi {
         System.out.print("Selecione uma opção: ");
     }
 
-    private static void addUser(Scanner scanner, UsersManager usersManager) {
+    private void addUser(Scanner scanner) {
         System.out.print("Login: ");
         String login = scanner.nextLine();
         System.out.print("Senha: ");
         String password = scanner.nextLine();
 
+        Command command = new InsertCommand(usersManager);
+
         try {
-            usersManager.addUser(login, password);
-        } catch (InvalidLoginException | InvalidPasswordException e) {
+            command.execute(new CommandData(Arrays.asList(login, password)));
+        } catch (InvalidCredentialsException e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }
 
-    private static void showUsers(UsersManager usersManager) {
-        List<User> users = usersManager.getUsers();
+    private void showUsers() {
+        Command command = new ViewCommand(usersManager);
         System.out.println("-----------------------------------------------");
-        for (User user : users) {
-            System.out.println("Login: " + user.getLogin());
-        }
+        command.execute(null);
         System.out.println("-----------------------------------------------");
     }
 
-    private static void updateUser(Scanner scanner, UsersManager usersManager) {
+    private void updateUser(Scanner scanner) {
         System.out.print("Login: ");
         String oldLogin = scanner.nextLine();
 
@@ -77,17 +80,20 @@ public class ManageUsersUi {
         System.out.print("Nova Senha: ");
         String newPassword = scanner.nextLine();
 
+        Command command = new UpdateCommand(usersManager);
+
         try {
-            usersManager.updateUser(oldLogin, newLogin, newPassword);
+            command.execute(new CommandData(Arrays.asList(newLogin, newPassword)));
         } catch (InvalidLoginException | InvalidPasswordException e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }
 
-    private static void deleteUser(Scanner scanner, UsersManager usersManager) {
+    private void deleteUser(Scanner scanner) {
         System.out.print("Login: ");
         String login = scanner.nextLine();
 
-        usersManager.deleteUser(login);
+        Command command = new DeleteCommand(usersManager);
+        command.execute(new CommandData(Arrays.asList(login)));
     }
 }

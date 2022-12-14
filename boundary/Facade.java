@@ -1,13 +1,11 @@
 package boundary;
 
-import control.*;
+import control.InvalidCredentialsException;
+import control.command.Command;
+import control.command.CommandData;
 
 public class Facade {
-    public void createTicket(String title, String author, String description){
-        TicketsManager.addTicket(title,author,description);
-    }
-
-    public void createLostItem(String title, String author, String description, String status, String location){
-        ItemsManager.addItem(title, author, description, status, location);
+    public void execute(Command command, CommandData data) throws InvalidCredentialsException {
+        command.execute(data);
     }
 }

@@ -1,5 +1,7 @@
 package entity;
 
+import control.visitor.EntityViewer;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +16,17 @@ public class Ticket {
     private List<String> commentaries;
     private List<File> attach;
 
-    public Ticket(String title, String author){
+    public Ticket(String title, String author, String description){
         this.title = title;
         this.author = author;
-        this.description = null;
+        this.description = description;
         this.status = null;
         this.commentaries = new ArrayList<>();
         this.attach = new ArrayList<>();
+    }
+
+    public void view(EntityViewer entityViewer) {
+        entityViewer.ViewTicket(this);
     }
 
     public void setTitle(String title){
@@ -45,6 +51,10 @@ public class Ticket {
 
     public String getTitle(){
         return this.title;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
     public String getDescription(){

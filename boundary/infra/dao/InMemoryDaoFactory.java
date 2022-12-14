@@ -1,4 +1,4 @@
-package boundary.infra;
+package boundary.infra.dao;
 
 import control.Dao;
 import control.DaoFactory;

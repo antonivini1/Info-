@@ -1,6 +1,6 @@
 package control;
 
-public class InvalidPasswordException extends Exception {
+public class InvalidPasswordException extends InvalidCredentialsException {
     InvalidPasswordException(String message) {
         super(message);
     }

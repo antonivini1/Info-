@@ -1,7 +1,10 @@
 package entity;
 
+import control.visitor.EntityViewer;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Item {
     private String title;
@@ -12,14 +15,17 @@ public class Item {
 
     private List<String> commentaries;
 
-    public Item(String title, String author){
+    public Item(String title, String author, String description, String status, String location){
         this.title = title;
         this.author = author;
-        this.title = null;
-        this.description = null;
-        this.status = null;
-        this.location = null;
+        this.description = description;
+        this.status = status;
+        this.location = location;
         this.commentaries = new ArrayList<String>();
+    }
+
+    public void view(EntityViewer entityViewer) {
+        entityViewer.ViewItem(this);
     }
 
     public void setTitle(String title){

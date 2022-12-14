@@ -2,7 +2,7 @@ package control;
 
 import java.util.List;
 
-public interface Dao<K, V> {
+public interface Dao<K, V> extends Restorable {
     public V get(K id);
 
     public List<V> getAll();
