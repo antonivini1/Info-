@@ -1,14 +1,15 @@
 package boundary.infra.network;
 
+import control.ExportUserService;
 import entity.User;
 
-public class ExternalServiceAdapter implements ExternalService {
-    private User user;
-    ExternalServiceAdapter(User user) {
-        this.user = user;
+public class ExternalServiceAdapter implements ExportUserService {
+    private ExternalService externalService;
+    ExternalServiceAdapter(ExternalService externalService) {
+        this.externalService = externalService;
     }
     @Override
-    public void uploadUserToAnotherService(UserJsonRequest request) {
+    public void uploadUserToAnotherService(User user) {
         UserJsonRequest json = new UserJsonRequest();
 
         json.id = user.getLogin();
@@ -16,13 +17,6 @@ public class ExternalServiceAdapter implements ExternalService {
         json.isOnline = user.getLastLogin() < 300_000;
         json.auth = user.getToken();
 
-        makeNetworkCall(json);
-    }
-
-    private void makeNetworkCall(UserJsonRequest request) {
-        json.id = user.getLogin();
-        json.login = user.getLogin();
-        json.isOnline = user.getLastLogin() < 300_000;
-        json.auth = user.getToken();
+        externalService.uploadUserToAnotherService(json);
     }
 }

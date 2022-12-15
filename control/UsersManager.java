@@ -43,6 +43,11 @@ public class UsersManager implements Manager {
         addUser(newLogin, newPassword);
     }
 
+    public void exportUser(String userName, ExportUserService service) {
+        User user = users.get(userName);
+        service.uploadUserToAnotherService(user);
+    }
+
     @Override
     public Memento createMemento() {
         return users.createMemento();
