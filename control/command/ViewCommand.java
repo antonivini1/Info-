@@ -1,17 +1,16 @@
 package control.command;
 
-import control.Service;
+import control.Controller;
 import control.visitor.EntityPrinter;
-import jdk.nashorn.internal.ir.debug.PrintVisitor;
 
 public class ViewCommand implements Command {
-    private Service service;
+    private Controller controller;
 
-    public ViewCommand(Service service) {
-        this.service = service;
+    public ViewCommand(Controller controller) {
+        this.controller = controller;
     }
     @Override
     public void execute(CommandData data) {
-        service.viewAll(new EntityPrinter());
+        controller.viewAll(new EntityPrinter());
     }
 }

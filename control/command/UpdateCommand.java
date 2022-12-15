@@ -1,16 +1,16 @@
 package control.command;
 
 import control.validation.InvalidCredentialsException;
-import control.Service;
+import control.Controller;
 
 public class UpdateCommand implements Command {
-    private Service service;
+    private Controller controller;
 
-    public UpdateCommand(Service service) {
-        this.service = service;
+    public UpdateCommand(Controller controller) {
+        this.controller = controller;
     }
     @Override
     public void execute(CommandData data) throws InvalidCredentialsException {
-        service.update(data);
+        controller.update(data);
     }
 }

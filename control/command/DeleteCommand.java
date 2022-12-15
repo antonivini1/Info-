@@ -1,15 +1,15 @@
 package control.command;
 
-import control.Service;
+import control.Controller;
 
 public class DeleteCommand implements Command {
-    private Service service;
+    private Controller controller;
 
-    public DeleteCommand(Service service) {
-        this.service = service;
+    public DeleteCommand(Controller controller) {
+        this.controller = controller;
     }
     @Override
     public void execute(CommandData data) {
-        service.delete(data);
+        controller.delete(data);
     }
 }

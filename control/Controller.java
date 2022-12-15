@@ -7,7 +7,7 @@ import control.validation.InvalidLoginException;
 import control.validation.InvalidPasswordException;
 import control.visitor.EntityViewer;
 
-public interface Service extends Restorable {
+public interface Controller extends Restorable {
     void insert(CommandData data) throws InvalidLoginException, InvalidPasswordException;
     void delete(CommandData data);
     void update(CommandData data) throws InvalidCredentialsException;

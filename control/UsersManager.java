@@ -1,6 +1,5 @@
 package control;
 
-import control.*;
 import control.command.CommandData;
 import control.dao.Dao;
 import control.dao.DaoFactory;
@@ -15,7 +14,7 @@ import entity.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersManager implements Service {
+public class UsersManager implements Controller {
     private Dao<String, User> users;
     private ArrayList<UserRegistrationObserver> observers;
 

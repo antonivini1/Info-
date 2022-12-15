@@ -10,7 +10,7 @@ import entity.Item;
 
 import java.util.List;
 
-public class ItemsManager implements Service {
+public class ItemsManager implements Controller {
     private Dao<String, Item> items;
 
     public ItemsManager(DaoFactory<String, Item> factory) {
