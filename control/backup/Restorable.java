@@ -1,4 +1,6 @@
-package control.memento;
+package control.backup;
+
+import control.backup.Memento;
 
 public interface Restorable {
     public Memento createMemento();

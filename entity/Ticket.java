@@ -1,6 +1,6 @@
 package entity;
 
-import control.visitor.EntityViewer;
+import control.EntityViewer;
 
 import java.io.File;
 import java.util.ArrayList;

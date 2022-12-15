@@ -1,20 +1,16 @@
 package control;
 
-import control.command.CommandData;
-import control.dao.Dao;
-import control.dao.DaoFactory;
-import control.memento.Memento;
+import control.backup.Memento;
 import control.validation.InvalidCredentialsException;
 import control.validation.InvalidLoginException;
 import control.validation.InvalidPasswordException;
 import control.validation.ValidateUserDetails;
-import control.visitor.EntityViewer;
 import entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersManager implements Controller {
+public class UsersManager implements Manager {
     private Dao<String, User> users;
     private ArrayList<UserRegistrationObserver> observers;
 
@@ -58,19 +54,19 @@ public class UsersManager implements Controller {
     }
 
     @Override
-    public void insert(CommandData data) throws InvalidLoginException, InvalidPasswordException {
+    public void insert(Arguments data) throws InvalidLoginException, InvalidPasswordException {
         List<Object> args =  data.getArgs();
         addUser((String) args.get(0), (String) args.get(1));
     }
 
     @Override
-    public void delete(CommandData data) {
+    public void delete(Arguments data) {
         List<Object> args =  data.getArgs();
         deleteUser((String) args.get(0));
     }
 
     @Override
-    public void update(CommandData data) throws InvalidCredentialsException {
+    public void update(Arguments data) throws InvalidCredentialsException {
         List<Object> args =  data.getArgs();
         updateUser((String) args.get(0), (String) args.get(1), (String) args.get(2));
     }

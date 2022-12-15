@@ -1,10 +1,9 @@
 package entity;
 
-import control.visitor.EntityViewer;
+import control.EntityViewer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Item {
     private String title;

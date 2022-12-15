@@ -1,4 +1,4 @@
-package control.memento;
+package control.backup;
 
 public interface Memento {
     public Object getState();

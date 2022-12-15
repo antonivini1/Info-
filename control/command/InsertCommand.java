@@ -1,17 +1,13 @@
 package control.command;
 
+import control.Arguments;
 import control.validation.InvalidCredentialsException;
-import control.Controller;
+import control.Manager;
 
 public class InsertCommand implements Command {
-    private Controller controller;
-
-    public InsertCommand(Controller controller) {
-        this.controller = controller;
-    }
 
     @Override
-    public void execute(CommandData data) throws InvalidCredentialsException {
-        controller.insert(data);
+    public void execute(Manager manager, Arguments data) throws InvalidCredentialsException {
+        manager.insert(data);
     }
 }

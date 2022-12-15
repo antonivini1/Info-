@@ -1,7 +1,7 @@
-package boundary.infra.dao;
+package boundary.infra.persistance;
 
-import control.dao.Dao;
-import control.dao.DaoFactory;
+import control.Dao;
+import control.DaoFactory;
 
 public class InMemoryDaoFactory<K, V> implements DaoFactory<K ,V> {
 

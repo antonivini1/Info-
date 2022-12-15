@@ -1,4 +1,4 @@
-package boundary.infra.adapter;
+package boundary.infra.network;
 
 import entity.User;
 

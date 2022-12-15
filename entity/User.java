@@ -1,6 +1,6 @@
 package entity;
 
-import control.visitor.EntityViewer;
+import control.EntityViewer;
 
 public class User {
     private String login;

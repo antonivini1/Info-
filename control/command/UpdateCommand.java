@@ -1,16 +1,12 @@
 package control.command;
 
+import control.Arguments;
 import control.validation.InvalidCredentialsException;
-import control.Controller;
+import control.Manager;
 
 public class UpdateCommand implements Command {
-    private Controller controller;
-
-    public UpdateCommand(Controller controller) {
-        this.controller = controller;
-    }
     @Override
-    public void execute(CommandData data) throws InvalidCredentialsException {
-        controller.update(data);
+    public void execute(Manager manager, Arguments data) throws InvalidCredentialsException {
+        manager.update(data);
     }
 }

@@ -1,4 +1,4 @@
-package control.visitor;
+package control;
 
 import entity.Item;
 import entity.Ticket;

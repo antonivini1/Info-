@@ -1,15 +1,11 @@
 package control.command;
 
-import control.Controller;
+import control.Arguments;
+import control.Manager;
 
 public class DeleteCommand implements Command {
-    private Controller controller;
-
-    public DeleteCommand(Controller controller) {
-        this.controller = controller;
-    }
     @Override
-    public void execute(CommandData data) {
-        controller.delete(data);
+    public void execute(Manager manager, Arguments data) {
+        manager.delete(data);
     }
 }

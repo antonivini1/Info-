@@ -1,11 +1,11 @@
-package control.command;
+package control;
 
 import java.util.List;
 
-public class CommandData {
+public class Arguments {
     private List<Object> args;
 
-    public CommandData(List<Object> args) {
+    public Arguments(List<Object> args) {
         args = args;
     }
 

@@ -1,29 +1,18 @@
 package boundary;
 
-import boundary.infra.dao.InMemoryDaoFactory;
-import control.UserRegistrationObserver;
+import boundary.infra.persistance.InMemoryDaoFactory;
+import control.*;
 import control.command.*;
 import control.validation.InvalidCredentialsException;
 import control.validation.InvalidLoginException;
 import control.validation.InvalidPasswordException;
-import control.UsersManager;
 import entity.User;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class ManageUsersUi {
-    private UsersManager usersManager;
-    public ManageUsersUi() {
-        usersManager = new UsersManager(new InMemoryDaoFactory<>());
-        usersManager.addObserver(new UserRegistrationObserver() {
-            @Override
-            public void onUserRegistered(User user) {
-                System.out.println("Bem-vindo " + user.getLogin());
-                System.out.println("Confira essas recomendações");
-            }
-        });
-    }
+    Facade facade = new Facade();
 
     public void run() {
         System.out.println("Bem-vindo ao info+");
@@ -34,21 +23,27 @@ public class ManageUsersUi {
             int option = scanner.nextInt();
             scanner.nextLine(); // \n
 
-            switch (option) {
-                case 1:
-                    addUser(scanner);
-                    break;
-                case 2:
-                    showUsers();
-                    break;
-                case 3:
-                    updateUser(scanner);
-                    break;
-                case 4:
-                    deleteUser(scanner);
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
+            try {
+                switch (option) {
+                    case 1:
+                        addUser(scanner);
+                        break;
+                    case 2:
+                        showUsers();
+                        break;
+                    case 3:
+                        updateUser(scanner);
+                        break;
+                    case 4:
+                        deleteUser(scanner);
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+            } catch (InvalidCredentialsException e) {
+                System.out.println("Erro: " + e.getMessage());
+            } catch (InternalErrorException e) {
+                System.out.println("Um erro inesperado ocorreu");
             }
         }
     }
@@ -61,29 +56,22 @@ public class ManageUsersUi {
         System.out.print("Selecione uma opção: ");
     }
 
-    private void addUser(Scanner scanner) {
+    private void addUser(Scanner scanner) throws InternalErrorException {
         System.out.print("Login: ");
         String login = scanner.nextLine();
         System.out.print("Senha: ");
         String password = scanner.nextLine();
 
-        Command command = new InsertCommand(usersManager);
-
-        try {
-            command.execute(new CommandData(Arrays.asList(login, password)));
-        } catch (InvalidCredentialsException e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
+        facade.execute("user", "insert", new Arguments(Arrays.asList(login, password)));
     }
 
-    private void showUsers() {
-        Command command = new ViewCommand(usersManager);
+    private void showUsers() throws InternalErrorException {
         System.out.println("-----------------------------------------------");
-        command.execute(null);
+        facade.execute("user", "view", null);
         System.out.println("-----------------------------------------------");
     }
 
-    private void updateUser(Scanner scanner) {
+    private void updateUser(Scanner scanner) throws InternalErrorException {
         System.out.print("Login: ");
         String oldLogin = scanner.nextLine();
 
@@ -92,20 +80,12 @@ public class ManageUsersUi {
         System.out.print("Nova Senha: ");
         String newPassword = scanner.nextLine();
 
-        Command command = new UpdateCommand(usersManager);
-
-        try {
-            command.execute(new CommandData(Arrays.asList(newLogin, newPassword)));
-        } catch (InvalidLoginException | InvalidPasswordException e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
+        facade.execute("user", "update", new Arguments(Arrays.asList(oldLogin, newLogin, newPassword)));
     }
 
-    private void deleteUser(Scanner scanner) {
+    private void deleteUser(Scanner scanner) throws InternalErrorException {
         System.out.print("Login: ");
         String login = scanner.nextLine();
-
-        Command command = new DeleteCommand(usersManager);
-        command.execute(new CommandData(Arrays.asList(login)));
+        facade.execute("user", "delete", new Arguments(Arrays.asList(login)));
     }
 }

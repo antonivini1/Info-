@@ -1,16 +1,12 @@
 package control;
 
-import control.command.CommandData;
-import control.dao.Dao;
-import control.dao.DaoFactory;
-import control.memento.Memento;
+import control.backup.Memento;
 import control.validation.InvalidCredentialsException;
-import control.visitor.EntityViewer;
 import entity.Item;
 
 import java.util.List;
 
-public class ItemsManager implements Controller {
+public class ItemsManager implements Manager {
     private Dao<String, Item> items;
 
     public ItemsManager(DaoFactory<String, Item> factory) {
@@ -50,19 +46,19 @@ public class ItemsManager implements Controller {
     }
 
     @Override
-    public void insert(CommandData data) {
+    public void insert(Arguments data) {
         List<Object> args = data.getArgs();
         addItem((String) args.get(0), (String) args.get(1), (String) args.get(2), (String) args.get(3), (String) args.get(4));
     }
 
     @Override
-    public void delete(CommandData data) {
+    public void delete(Arguments data) {
         List<Object> args = data.getArgs();
         deleteItem((String) args.get(0));
     }
 
     @Override
-    public void update(CommandData data) throws InvalidCredentialsException {
+    public void update(Arguments data) throws InvalidCredentialsException {
         List<Object> args =  data.getArgs();
         EditDescription((String) args.get(0), (String) args.get(1));
     }
