@@ -8,7 +8,7 @@ public class User {
 
     private String token;
 
-    private Long lastActivity;
+    private Long lastLogin;
 
     public User(String login, String password) {
         this.login = login;
@@ -27,7 +27,11 @@ public class User {
         return token;
     }
 
-    public Long getLastActivity() {
-        return lastActivity;
+    public Long getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Long lastLogin) {
+        this.lastLogin = lastLogin;
     }
 }

@@ -13,7 +13,7 @@ public class ExternalServiceAdapter implements ExternalService {
 
         json.id = user.getLogin();
         json.login = user.getLogin();
-        json.isOnline = user.getLastActivity() < 300_000;
+        json.isOnline = user.getLastLogin() < 300_000;
         json.auth = user.getToken();
 
         makeNetworkCall(json);
@@ -22,7 +22,7 @@ public class ExternalServiceAdapter implements ExternalService {
     private void makeNetworkCall(UserJsonRequest request) {
         json.id = user.getLogin();
         json.login = user.getLogin();
-        json.isOnline = user.getLastActivity() < 300_000;
+        json.isOnline = user.getLastLogin() < 300_000;
         json.auth = user.getToken();
     }
 }

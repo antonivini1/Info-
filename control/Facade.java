@@ -5,22 +5,13 @@ import control.command.*;
 import control.validation.InvalidCredentialsException;
 import entity.User;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class Facade {
-    private UsersManager usersManager = new UsersManager(new InMemoryDaoFactory<>());
-    private ItemsManager itemsManager = new ItemsManager(new InMemoryDaoFactory<>());
-    private TicketsManager ticketsManager = new TicketsManager(new InMemoryDaoFactory<>());
-
-    public Facade() {
-        usersManager.addObserver(new UserRegistrationObserver() {
-            @Override
-            public void onUserRegistered(User user) {
-                System.out.println("Bem-vindo " + user.getLogin());
-                System.out.println("Confira essas recomendações");
-            }
-        });
-    }
+    private UsersManager usersManager = ControllerFactory.createUsersManager();
+    private ItemsManager itemsManager = ControllerFactory.createItemsManager();
+    private TicketsManager ticketsManager = ControllerFactory.createTicketsManager();
 
     private HashMap<String, Manager> dataTypes = new HashMap<>() {{
         put("user", usersManager);
