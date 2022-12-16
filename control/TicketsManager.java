@@ -59,7 +59,7 @@ public class TicketsManager implements Manager {
 
     @Override
     public void update(Arguments data) throws InvalidCredentialsException {
-        List<Object> args =  data.getArgs();
+        List<Object> args = data.getArgs();
         EditDescription((String) args.get(0), (String) args.get(1));
     }
 
