@@ -11,31 +11,31 @@ public class UserReportDecorator extends UserReport {
 
     @Override
      public String getUsername() {
-        return firstName + " " + username + " " + lastName;
+        return userReport.getUsername() + lastName;
     }
 
     @Override
     public int getVisits() {
-        return visits + selfVisit;
+        return userReport.getVisits() + selfVisit;
     }
 
     @Override
     public int getMinutesLoggedIn() {
-        return minutesLoggedIn + minutesLoggedInBuffer;
+        return userReport.getMinutesLoggedIn() + minutesLoggedInBuffer;
     }
 
     @Override
     public int getComments() {
-        return comments + selfComments;
+        return userReport.getComments() + selfComments;
     }
 
     @Override
     public int getTickets() {
-        return tickets + selfTickets;
+        return userReport.getTickets() + selfTickets;
     }
 
     @Override
     public int getItems() {
-        return items + selfItems;
+        return userReport.getItems() + selfItems;
     }
 }
