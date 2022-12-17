@@ -3,17 +3,18 @@ package entity;
 import control.EntityViewer;
 
 public class User {
-    private String login;
-    private String password;
-
-    private String token;
-
-    private Long lastLogin;
+    protected String login;
+    protected String password;
+    protected String token;
+    protected Long lastLogin;
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
     }
+
+    public User(User umUser) {
+    };
 
     public void view(EntityViewer entityViewer) {
         entityViewer.ViewUser(this);

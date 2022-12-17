@@ -1,12 +1,12 @@
 package entity;
 
 public class UserReport {
-    private String username;
-    private int visits;
-    private int minutesLoggedIn;
-    private int comments;
-    private int tickets;
-    private int items;
+    protected String username;
+    protected int visits;
+    protected int minutesLoggedIn;
+    protected int comments;
+    protected int tickets;
+    protected int items;
 
     public UserReport(String username, int visits, int minutesLoggedIn, int comments, int tickets, int items) {
         this.username = username;
@@ -16,6 +16,9 @@ public class UserReport {
         this.tickets = tickets;
         this.items = items;
     }
+
+    public UserReport(UserReport umUserReport) {
+    };
 
     public String getUsername() {
         return username;

@@ -1,15 +1,16 @@
-package entity;
+package control.decorators;
 
-import control.EntityViewer;
+import entity.Ticket;
 
 public class TicketDecorator extends Ticket {
     Ticket ticket;
 
     public TicketDecorator(Ticket umTicket) {
-       ticket = umTicket;
+        super(umTicket);
+        // ticket = umTicket;
     }
 
-    public String sendEverythingAsBuffer(){
+    public String sendEverythingAsBuffer() {
         return ticket.getTitle() + " " + ticket.getDescription() + " " + ticket.getAuthor();
     }
 }

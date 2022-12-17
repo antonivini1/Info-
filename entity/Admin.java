@@ -1,8 +1,8 @@
 package entity;
 
-public class Admin extends UserDecorator {
+public class Admin extends User {
     public Admin(String login, String password) {
         super(login, password);
-        flag = "ADMIN";
+        token = "ADMIN";
     }
 }

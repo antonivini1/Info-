@@ -17,6 +17,9 @@ public class Ticket extends TicketPrototype {
 
     }
 
+    public Ticket(Ticket umTicket) {
+    }
+
     @Override
     public void view(EntityViewer entityViewer) {
         entityViewer.ViewTicket(this);
