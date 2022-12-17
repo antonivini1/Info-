@@ -1,11 +1,12 @@
 package entity;
 
 import control.EntityViewer;
+import control.prototype.ItemPrototype;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Item {
+public class Item extends ItemPrototype {
     protected String title;
     protected String description;
     protected String status;
@@ -24,45 +25,23 @@ public class Item {
     }
 
     public Item(Item umItem) {
+        this.title = umItem.title;
+        this.author = umItem.author;
+        this.description = umItem.description;
+        this.status = umItem.status;
+        this.location = umItem.location;
+        this.commentaries = umItem.commentaries;
+
     };
 
+    @Override
     public void view(EntityViewer entityViewer) {
         entityViewer.ViewItem(this);
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public ItemPrototype clonar() {
+        return new Item(this);
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void addCommentary(String commentary) {
-        this.commentaries.add(commentary);
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public String getLocation() {
-        return this.location;
-    }
 }
