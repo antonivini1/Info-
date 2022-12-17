@@ -17,7 +17,13 @@ public class Ticket extends TicketPrototype {
 
     }
 
-    public Ticket(Ticket umTicket) {
+    protected Ticket(Ticket umTicket) {
+        this.title = umTicket.title;
+        this.author = umTicket.author;
+        this.description = umTicket.description;
+        this.status = umTicket.status;
+        this.commentaries = umTicket.commentaries;
+        this.attach = umTicket.attach;
     }
 
     @Override
@@ -27,7 +33,7 @@ public class Ticket extends TicketPrototype {
 
     @Override
     public TicketPrototype clonar() {
-        return new Ticket(this.title, this.author, this.description);
+        return new Ticket(this);
     }
 
 }
