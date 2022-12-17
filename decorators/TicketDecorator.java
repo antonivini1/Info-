@@ -8,4 +8,8 @@ public class TicketDecorator extends Ticket {
     public TicketDecorator(Ticket umTicket) {
        ticket = umTicket;
     }
+
+    public String sendEverythingAsBuffer(){
+        return ticket.getTitle() + " " + ticket.getDescription() + " " + ticket.getAuthor();
+    }
 }
